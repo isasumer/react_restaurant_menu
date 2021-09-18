@@ -14,15 +14,8 @@ align-items: center;
 `;
 const categoryList =["All", ...new Set(data.map((item)=>item.category))]
 
-
-
 const App = () => {
   const [menuItems, setmenuItems] = useState(data)
-  const [counter, setCounter] = useState(3)
-  const [show, setShow] = useState(true)
-  const [list, setList] = useState([])
-
-
 
   const changeList = (category) => {
     category === "All"
