@@ -1,12 +1,14 @@
 import {useState} from 'react';
+import Navbar from "./components/Navbar"
 import Header from "./components/Header"
 import Category from "./components/Category"
 import Menu from "./components/Menu"
+import Cart from "./pages/Cart"
 import data from "./components/data"
 import styled from "styled-components";
 
 const Container = styled.div`
-height:100vh;
+/* height:100vh; */
 background-color:orange;
 display:flex;
 flex-direction:column;
@@ -26,14 +28,11 @@ const App = () => {
 
   return (
     <Container>
-      <p>{counter}</p>
-      <button onClick={()=> setCounter(counter*2)}>-</button>
-      <button onClick={()=> setShow(!show)}>Show</button>
-      <button onClick={()=> setList(...list, counter)}>Ekle</button>
-      <p>List:{list}</p>
-      {show && <Header/> }
+      <Navbar/>
+      <Header/>
       <Category categoryList={categoryList} changeList={changeList}/>
       <Menu menuItems={menuItems}/>
+      <Cart />
     </Container>
   )
 }
