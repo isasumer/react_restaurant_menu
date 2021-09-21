@@ -17,21 +17,21 @@ const Container = styled.div`
 `;
 
 const Home = () => {
-  const [menuItems, setmenuItems] = useState(data);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const changeList = (category) => {
-    category === "All"
-      ? setmenuItems(data)
-      : setmenuItems(data.filter((item) => item.category === category));
-    console.log(menuItems);
-  };
+  // const changeList = (category) => {
+  //   category === "All"
+  //     ? setmenuItems(data)
+  //     : setmenuItems(data.filter((item) => item.category === category));
+ 
+  // };
 
   return (
     <Container>
       <Navbar />
       <Header />
-      <Category />
-      <Menu />
+      <Category setSelectedCategory={setSelectedCategory}/>
+      <Menu selectedCategory={selectedCategory}/>
     </Container>
   );
 };

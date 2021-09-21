@@ -67,9 +67,9 @@ const Menu = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,props) => {
   return {
-    menuList: state.menuLlist,
+    menuList: props.selectedCategory === "All" ? (state.menuList) : (state.menuList.filter((item) => item.category === props.selectedCategory)),
     cart: state.cart,
   };
 };

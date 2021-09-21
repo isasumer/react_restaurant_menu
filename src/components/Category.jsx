@@ -14,7 +14,7 @@ const Category = (props) => {
   return (
     <Wrapper>
       {props.categoryList.map((category) => (
-        <Button key={category}>{category}</Button> //onClick={()=>changeList(category)}
+        <Button key={category} onClick= {()=> props.setSelectedCategory(category)}>{category} </Button> //onClick={()=>changeList(category)}
       ))}
     </Wrapper>
   );
