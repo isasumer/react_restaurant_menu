@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
@@ -33,15 +34,8 @@ const SearchContainer = styled.span`
   padding: 5px;
 `;
 
-const Productlist = styled.div`
-  margin-left: 20px;
-  font-size: 1.2rem;
-`;
 
 const Input = styled.input`
-  border: none;
-`;
-const Logo = styled.div`
   border: none;
 `;
 
@@ -58,7 +52,7 @@ const MenuItem = styled.div`
   margin: 0 15px;
 `;
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <Container>
       <Wrapper>
@@ -78,7 +72,7 @@ const Navbar = () => {
           <MenuItem> Sign In </MenuItem>
           <MenuItem>
           <Link to="/cart">
-            <Badge badgeContent={1} color="primary">
+            <Badge badgeContent={props.cart.length} color="primary">
               <ShoppingCartOutlined />
             </Badge>
             </Link>
@@ -88,5 +82,10 @@ const Navbar = () => {
     </Container>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
 
-export default Navbar;
+export default connect(mapStateToProps)(Navbar);
