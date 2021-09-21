@@ -1,18 +1,22 @@
-import RemoveIcon from '@material-ui/icons/Remove';
-import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from "@material-ui/icons/Remove";
+import AddIcon from "@material-ui/icons/Add";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
+import { connect } from "react-redux";
 
 const Container = styled.div`
-display:flex;
-flex-direction:column;
-background-color:white;
-margin:0px;
-padding:0px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
 `;
 
 const Wrapper = styled.div`
-  /* padding: 20px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Title = styled.h1`
@@ -23,8 +27,9 @@ const Title = styled.h1`
 const Top = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 20px;
+  width: 80%;
 `;
 
 const TopButton = styled.button`
@@ -45,50 +50,25 @@ const TopText = styled.span`
 `;
 
 const Bottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Info = styled.div`
-  flex: 3;
+  width: 70%;
+  border: 1px solid red;
 `;
 
 const Product = styled.div`
   display: flex;
-  justify-content: space-between;
-`;
-
-const ProductDetail = styled.div`
-  flex: 2;
-  display: flex;
+  border: 1px solid red;
+  width:60%;
 `;
 
 const Image = styled.img`
-  width: 200px;
+  width: 20vw;
+  height: 175px;
+  object-fit: cover;
+  border: 0.25rem solid black;
+  border-radius: 10px;
 `;
 
-const Details = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-
-const ProductName = styled.span``;
-
-const ProductId = styled.span``;
-
-const ProductColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-`;
-
-const ProductSize = styled.span``;
-
-const PriceDetail = styled.div`
-  flex: 1;
+const ProductName = styled.span`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,45 +91,7 @@ const ProductPrice = styled.div`
   font-weight: 200;
 `;
 
-const Hr = styled.hr`
-  background-color: #eee;
-  border: none;
-  height: 1px;
-`;
-
-const Summary = styled.div`
-  flex: 1;
-  border: 0.5px solid lightgray;
-  border-radius: 10px;
-  padding: 20px;
-  height: 50vh;
-`;
-
-const SummaryTitle = styled.h1`
-  font-weight: 200;
-`;
-
-const SummaryItem = styled.div`
-  margin: 30px 0px;
-  display: flex;
-  justify-content: space-between;
-  font-weight: ${(props) => props.type === "total" && "500"};
-  font-size: ${(props) => props.type === "total" && "24px"};
-`;
-
-const SummaryItemText = styled.span``;
-
-const SummaryItemPrice = styled.span``;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  font-weight: 600;
-`;
-
-const Cart = () => {
+const Cart = (props) => {
   return (
     <Container>
       <Navbar />
@@ -158,63 +100,39 @@ const Cart = () => {
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(1)</TopText>
+            <TopText>Shopping Bag({props.cart.length})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
         <Bottom>
-          <Info>
-            <Product>
-              <ProductDetail>
-                <Image alt="JESSIE" src="https://twoplaidaprons.com/wp-content/uploads/2020/09/tteokbokki-top-down-view-of-tteokbokki-in-a-bowl-500x500.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> Tteokbotti
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b> 37.5
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
+          {props.cart.map((item) => (
+            <Product key={item.key}>
+              <Image alt={item.title} src={item.img} />
+              <ProductName>
+                <b>Name:</b> {item.title}
                 <ProductAmountContainer>
                   <RemoveIcon />
                   <ProductAmount>2</ProductAmount>
                   <AddIcon />
                 </ProductAmountContainer>
-                <ProductPrice>$ 10.99</ProductPrice>
-              </PriceDetail>
+                <ProductPrice>
+                  {"$"}
+                  {item.price}{" "}
+                </ProductPrice>
+              </ProductName>
             </Product>
-          </Info>
-          <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-            <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem type="total">
-              <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
-            </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
-          </Summary>
+          ))}
         </Bottom>
       </Wrapper>
     </Container>
   );
 };
 
-export default Cart;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+
+export default connect(mapStateToProps)(Cart);
