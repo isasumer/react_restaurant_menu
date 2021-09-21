@@ -12,10 +12,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin:0px;
-padding:0px;
+  margin: 0px;
+  padding: 0px;
 `;
-const categoryList = ["All", ...new Set(data.map((item) => item.category))];
 
 const Home = () => {
   const [menuItems, setmenuItems] = useState(data);
@@ -31,8 +30,8 @@ const Home = () => {
     <Container>
       <Navbar />
       <Header />
-      <Category categoryList={categoryList} changeList={changeList} />
-      <Menu menuItems={menuItems} />
+      <Category />
+      <Menu />
     </Container>
   );
 };
