@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { addChart } from "../actions/action";
 
 const Container = styled.div`
   display: flex;
@@ -32,13 +34,15 @@ const Title = styled.div`
 const Subtitle = styled.p``;
 const Price = styled.p``;
 const Desc = styled.div`
-padding-top: 10px;
+  padding-top: 10px;
 `;
 
-const Menu = ({ menuItems }) => {
+const Button = styled.button``;
+
+const Menu = (props) => {
   return (
     <Container>
-      {menuItems.map((item) => {
+      {props.menuList.map((item) => {
         return (
           <Wrapper key={item.id}>
             <Image src={item.img}></Image>
@@ -48,6 +52,13 @@ const Menu = ({ menuItems }) => {
                 <Price>{item.price}</Price>
               </Title>
               <Desc>{item.desc}</Desc>
+              <Button
+                onClick={() => {
+                  props.addChart(item);
+                }}
+              >
+                Add to Chart
+              </Button>
             </Content>
           </Wrapper>
         );
@@ -56,4 +67,11 @@ const Menu = ({ menuItems }) => {
   );
 };
 
-export default Menu;
+const mapStateToProps = (state) => {
+  return {
+    menuList: state.menuLlist,
+    cart: state.cart,
+  };
+};
+
+export default connect(mapStateToProps, { addChart })(Menu);
