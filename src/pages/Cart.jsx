@@ -6,12 +6,13 @@ import Navbar from "../components/Navbar";
 const Container = styled.div`
 display:flex;
 flex-direction:column;
-margin:20px 0;
 background-color:white;
+margin:0px;
+padding:0px;
 `;
 
 const Wrapper = styled.div`
-  padding: 20px;
+  /* padding: 20px; */
 `;
 
 const Title = styled.h1`
@@ -153,7 +154,7 @@ const Cart = () => {
     <Container>
       <Navbar />
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>YOUR CART</Title>
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
@@ -212,7 +213,6 @@ const Cart = () => {
           </Summary>
         </Bottom>
       </Wrapper>
-
     </Container>
   );
 };
