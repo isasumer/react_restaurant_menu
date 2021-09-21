@@ -5,9 +5,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 const App = () => {
   return (
     <Router>
+      {console.log("app")}
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/" component={Home} />
     </Router>
   );
 };
+
 export default App;
