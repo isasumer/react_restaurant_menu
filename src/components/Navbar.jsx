@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   height: 60px;
   width: 100%;
-  padding-top: 10px;
+  margin-top: 10px;
 `;
 
 const Wrapper = styled.div`
-  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,13 +70,18 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Right>
+          <Link to="/">
+          <MenuItem>Home</MenuItem>
+          </Link>
           <MenuItem>Call Us</MenuItem>
           <MenuItem>Register</MenuItem>
           <MenuItem> Sign In </MenuItem>
           <MenuItem>
+          <Link to="/cart">
             <Badge badgeContent={1} color="primary">
               <ShoppingCartOutlined />
             </Badge>
+            </Link>
           </MenuItem>
         </Right>
       </Wrapper>
