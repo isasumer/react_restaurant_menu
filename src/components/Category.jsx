@@ -1,25 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
-const Wrapper = styled.div`
-`;
+const Wrapper = styled.div``;
 const Button = styled.button`
-width: 100px;
-height:50px;
-margin:5px;
-border-radius:10px;
-
+  width: 100px;
+  height: 50px;
+  margin: 5px;
+  border-radius: 10px;
 `;
 
-const Category = ({ categoryList, changeList }) => {
+const Category = (props) => {
   return (
     <Wrapper>
-      {categoryList.map((category) => (
-        <Button
-        onClick={()=>changeList(category)}>{category}</Button>
+      {props.categoryList.map((category) => (
+        <Button key={category}>{category}</Button> //onClick={()=>changeList(category)}
       ))}
     </Wrapper>
   );
 };
 
-export default Category;
+const mapStateToProps = (state) => {
+  return {
+    categoryList: state.categoryList,
+  };
+};
+
+export default connect(mapStateToProps)(Category);
