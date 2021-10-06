@@ -1,70 +1,49 @@
 import styled from "styled-components";
-import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import mobile from "./Responsive";
 
 const Container = styled.div`
-  height: 60px;
   width: 100%;
-  margin-top: 15px;
-  padding-left: 10px;
-  ${mobile({ paddingLeft: "0px" })};
+  height: 60px;
+  margin: 15px;
+  ${mobile({ height: "140px", margin: "0" })};
 `;
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  ${mobile({ display: "flex", flexDirection: "column" })};
 `;
-
-const Left = styled.div`
-  flex: 1;
-  align-items: center;
-  display: flex;
-  ${mobile({ display: "none" })};
-`;
-
-const Language = styled.span`
-  font-size: 14px;
-  cursor: pointer;
-`;
-const SearchContainer = styled.span`
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-  padding: 5px;
-`;
-
-const Input = styled.input``;
 
 const Right = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: flex-end;
-  ${mobile({ justifyContent: "center" })};
+  padding-right: 50px;
+  ${mobile({ justifyContent: "center", paddingRight: "0px" })};
 `;
 
 const MenuItem = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   cursor: pointer;
   margin: 0 15px;
   ${mobile({ fontSize: "1rem", marginRight: "5px" })};
 `;
-
+const Title = styled.h1`
+  font-size: 40px;
+  width: 600px;
+  padding-left: 100px;
+  ${mobile({ width: "60%", paddingLeft: "0" })};
+`;
 const Navbar = (props) => {
   return (
     <Container>
       <Wrapper>
-        <Left>
-          <Language>En</Language>
-          <SearchContainer>
-            <Input />
-            <Search style={{ color: "gray", fontSize: 16 }} />
-          </SearchContainer>
-        </Left>
+        <Title>Asian Menu</Title>
         <Right>
           <Link to="/">
             <MenuItem>Home</MenuItem>

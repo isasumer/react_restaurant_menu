@@ -10,7 +10,7 @@ const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #e7faff;
+  background-color: orange;
   margin: 0px;
   padding: 0px;
 `;
@@ -72,7 +72,7 @@ const Product = styled.div`
   display: flex;
   padding: 5px;
   margin: 5px;
-  background-color: orange;
+  border: 1px solid black;
   border-radius: 10px;
 `;
 const Image = styled.img`
@@ -109,7 +109,10 @@ const ProductPrice = styled.div`
 `;
 const Total = styled.div`
   margin: 20px 0 0 120px;
+  height: 40px;
   font-size: 30px;
+  border: 1px solid black;
+
   ${mobile({
     paddingLeft: "15px",
     backgroundColor: "#f0ee97",

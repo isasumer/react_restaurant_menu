@@ -1,82 +1,37 @@
-import React from "react";
-import styled from "styled-components";
+import { useRef } from "react";
 import { connect } from "react-redux";
-import { addChart } from "../actions/action";
-import mobile from "./Responsive";
-
-const Container = styled.div`
-  display: flex;
-  min-height: 100vh;
-  flex-wrap: wrap;
-  ${mobile({ flexDirection: "column" })};
-`;
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 30%;
-  ${mobile({ width: "90%", padding: "10px" })};
-`;
-const Image = styled.img`
-  width: 30%;
-  height: 175px;
-  object-fit: cover;
-  border: 0.25rem solid black;
-  border-radius: 10px;
-`;
-const Content = styled.div`
-  position: relative;
-  padding-left: 10px;
-`;
-const Title = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-bottom: 2px solid gray;
-`;
-const Subtitle = styled.p``;
-const Price = styled.p``;
-const Desc = styled.div`
-  padding-top: 10px;
-`;
-
-const Button = styled.button`
-  position: absolute;
-  top: 150px;
-  left: 55px;
-  background-color: #d2f6ff;
-  border-radius: 20px;
-  height: 26px;
-  cursor: pointer;
-  :hover {
-    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-    transform: translate3d(0, 0, 0);
-    perspective: 1000px;
-  }
-  @keyframes shake {
-    10%,
-    90% {
-      transform: translate3d(-1px, 0, 0);
-    }
-    20%,
-    80% {
-      transform: translate3d(2px, 0, 0);
-    }
-
-    30%,
-    50%,
-    70% {
-      transform: translate3d(-2px, 0, 0);
-    }
-    40%,
-    60% {
-      transform: translate3d(2px, 0, 0);
-    }
-  }
-`;
+import { addChart, search, categoryButton } from "../actions/action";
+import {
+  Container,
+  Form,
+  Input,
+  Search,
+  Wrapper,
+  Image,
+  Content,
+  Title,
+  Subtitle,
+  Price,
+  Desc,
+  Button,
+} from "./Menu_Style";
 
 const Menu = (props) => {
+  const inputRef = useRef();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    props.search(inputRef.current.value);
+  };
   return (
     <Container>
+      <Form onSubmit={submitHandler}>
+        <Input
+          type="text"
+          ref={inputRef}
+          placeholder="Please enter food's name"
+        />
+        <Search type="submit">Search</Search>
+      </Form>
       {props.menuList.map((item) => {
         return (
           <Wrapper key={item.id}>
@@ -104,14 +59,11 @@ const Menu = (props) => {
 
 const mapStateToProps = (state, props) => {
   return {
-    menuList:
-      props.selectedCategory === "All"
-        ? state.menuList
-        : state.menuList.filter(
-            (item) => item.category === props.selectedCategory
-          ),
+    menuList: state.menuList,
     cart: state.cart,
   };
 };
 
-export default connect(mapStateToProps, { addChart })(Menu);
+export default connect(mapStateToProps, { addChart, search, categoryButton })(
+  Menu
+);
