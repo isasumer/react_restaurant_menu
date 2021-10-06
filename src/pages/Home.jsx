@@ -3,11 +3,10 @@ import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import Category from "../components/Category";
 import Menu from "../components/Menu";
-import data from "../components/data";
 import styled from "styled-components";
 
 const Container = styled.div`
-  /* height:100vh; */
+  min-height: 100vh;
   background-color: orange;
   display: flex;
   flex-direction: column;
@@ -19,21 +18,13 @@ const Container = styled.div`
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // const changeList = (category) => {
-  //   category === "All"
-  //     ? setmenuItems(data)
-  //     : setmenuItems(data.filter((item) => item.category === category));
- 
-  // };
-
   return (
     <Container>
       <Navbar />
       <Header />
-      <Category setSelectedCategory={setSelectedCategory}/>
-      <Menu selectedCategory={selectedCategory}/>
+      <Category setSelectedCategory={setSelectedCategory} />
+      <Menu selectedCategory={selectedCategory} />
     </Container>
   );
 };
-
 export default Home;

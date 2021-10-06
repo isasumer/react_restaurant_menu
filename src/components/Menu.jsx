@@ -23,6 +23,7 @@ const Image = styled.img`
   border-radius: 10px;
 `;
 const Content = styled.div`
+  position: relative;
   padding-left: 10px;
 `;
 const Title = styled.div`
@@ -37,7 +38,34 @@ const Desc = styled.div`
   padding-top: 10px;
 `;
 
-const Button = styled.button``;
+const Button = styled.button`
+  position: absolute;
+  top: 150px;
+  left: 55px;
+  background-color: #d2f6ff;
+  border-radius: 20px;
+  height: 26px;
+  cursor: pointer;
+  :hover {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  perspective: 1000px;
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  
+  30%, 50%, 70% {
+    transform: translate3d(-2px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(2px, 0, 0);
+}
+`;
 
 const Menu = (props) => {
   return (
@@ -57,7 +85,7 @@ const Menu = (props) => {
                   props.addChart(item);
                 }}
               >
-                Add to Chart
+                Add to Cart
               </Button>
             </Content>
           </Wrapper>
@@ -67,9 +95,14 @@ const Menu = (props) => {
   );
 };
 
-const mapStateToProps = (state,props) => {
+const mapStateToProps = (state, props) => {
   return {
-    menuList: props.selectedCategory === "All" ? (state.menuList) : (state.menuList.filter((item) => item.category === props.selectedCategory)),
+    menuList:
+      props.selectedCategory === "All"
+        ? state.menuList
+        : state.menuList.filter(
+            (item) => item.category === props.selectedCategory
+          ),
     cart: state.cart,
   };
 };

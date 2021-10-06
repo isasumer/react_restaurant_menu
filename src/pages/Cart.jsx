@@ -5,9 +5,10 @@ import Navbar from "../components/Navbar";
 import { connect } from "react-redux";
 
 const Container = styled.div`
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: #e7faff;
   margin: 0px;
   padding: 0px;
 `;
@@ -52,17 +53,20 @@ const TopText = styled.span`
 const Bottom = styled.div`
   width: 70%;
   border: 1px solid red;
+  display: flex;
 `;
 
 const Product = styled.div`
   display: flex;
-  border: 1px solid red;
-  width:60%;
+  flex: 2;
+  padding: 5px;
+  background-color: orange;
+  margin: 5px;
+  border-radius: 10px;
 `;
-
 const Image = styled.img`
-  width: 20vw;
-  height: 175px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border: 0.25rem solid black;
   border-radius: 10px;
@@ -71,27 +75,35 @@ const Image = styled.img`
 const ProductName = styled.span`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  margin-left: 20px;
 `;
 
 const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 `;
 
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
 `;
-
 const ProductPrice = styled.div`
+  font-size: 30px;
+  font-weight: 200;
+`;
+const Total = styled.div`
+  margin: 20px 0 0 120px;
   font-size: 30px;
   font-weight: 200;
 `;
 
 const Cart = (props) => {
+  const reducer = (x, y) => x + y;
+  const totalPrice = props.cart.map((item) => item.price).reduce(reducer, 0);
+  console.log(totalPrice);
+
   return (
     <Container>
       <Navbar />
@@ -106,23 +118,35 @@ const Cart = (props) => {
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
         <Bottom>
-          {props.cart.map((item) => (
-            <Product key={item.key}>
-              <Image alt={item.title} src={item.img} />
-              <ProductName>
-                <b>Name:</b> {item.title}
-                <ProductAmountContainer>
-                  <RemoveIcon />
-                  <ProductAmount>2</ProductAmount>
-                  <AddIcon />
-                </ProductAmountContainer>
-                <ProductPrice>
-                  {"$"}
-                  {item.price}{" "}
-                </ProductPrice>
-              </ProductName>
-            </Product>
-          ))}
+          <div>
+            {props.cart.map((item) => (
+              <Product key={item.key}>
+                <Image alt={item.title} src={item.img} />
+                <ProductName>
+                  <span>
+                    <b>Name:</b> {item.title}
+                  </span>
+                  <ProductAmountContainer>
+                    <RemoveIcon />
+                    <ProductAmount>1</ProductAmount>
+                    <AddIcon />
+                  </ProductAmountContainer>
+                  <ProductPrice>
+                    {"$"}
+                    {item.price}
+                  </ProductPrice>
+                </ProductName>
+              </Product>
+            ))}
+          </div>
+          <Total>
+            <b>Total Price:</b>
+            <span>
+              {" "}
+              {"$"}
+              {totalPrice}{" "}
+            </span>
+          </Total>
         </Bottom>
       </Wrapper>
     </Container>
