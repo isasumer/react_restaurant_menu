@@ -11,8 +11,6 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-
-  /* border:1px solid blue; */
   width: 30%;
 `;
 const Image = styled.img`
