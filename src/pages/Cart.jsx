@@ -3,6 +3,8 @@ import AddIcon from "@material-ui/icons/Add";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import mobile from "../components/Responsive";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -34,6 +36,7 @@ const Top = styled.div`
 `;
 
 const TopButton = styled.button`
+  border-radius: 10px;
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
@@ -41,9 +44,18 @@ const TopButton = styled.button`
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};
   color: ${(props) => props.type === "filled" && "white"};
+  ${mobile({
+    padding: "6px",
+    fontWeight: "500",
+    margin: "3px",
+    border: "filled",
+    fontSize: "12px",
+  })}
 `;
 
-const TopTexts = styled.div``;
+const TopTexts = styled.div`
+  ${mobile({ display: "none" })}
+`;
 const TopText = styled.span`
   text-decoration: underline;
   cursor: pointer;
@@ -52,16 +64,15 @@ const TopText = styled.span`
 
 const Bottom = styled.div`
   width: 70%;
-  border: 1px solid red;
   display: flex;
+  ${mobile({ display: "flex", flexDirection: "column" })}
 `;
 
 const Product = styled.div`
   display: flex;
-  flex: 2;
   padding: 5px;
-  background-color: orange;
   margin: 5px;
+  background-color: orange;
   border-radius: 10px;
 `;
 const Image = styled.img`
@@ -88,15 +99,25 @@ const ProductAmountContainer = styled.div`
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
+  ${mobile({ fontSize: "16px" })}
 `;
+
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
+  ${mobile({ fontSize: "16px" })}
 `;
 const Total = styled.div`
   margin: 20px 0 0 120px;
   font-size: 30px;
-  font-weight: 200;
+  ${mobile({
+    paddingLeft: "15px",
+    backgroundColor: "#f0ee97",
+    margin: "10px 20px",
+    fontSize: "20px",
+    border: "1px solid black",
+    borderRadius: "10px",
+  })}
 `;
 
 const Cart = (props) => {
@@ -110,7 +131,9 @@ const Cart = (props) => {
       <Wrapper>
         <Title>YOUR CART</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          <Link to="/">
+            <TopButton>CONTINUE SHOPPING</TopButton>
+          </Link>
           <TopTexts>
             <TopText>Shopping Bag({props.cart.length})</TopText>
             <TopText>Your Wishlist (0)</TopText>

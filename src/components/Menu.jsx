@@ -2,16 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { addChart } from "../actions/action";
+import mobile from "./Responsive";
 
 const Container = styled.div`
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   flex-wrap: wrap;
+  ${mobile({ flexDirection: "column" })};
 `;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 30%;
+  ${mobile({ width: "90%", padding: "10px" })};
 `;
 const Image = styled.img`
   width: 30%;

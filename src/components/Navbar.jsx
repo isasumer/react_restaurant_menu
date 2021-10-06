@@ -3,11 +3,14 @@ import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import mobile from "./Responsive";
 
 const Container = styled.div`
   height: 60px;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 15px;
+  padding-left: 10px;
+  ${mobile({ paddingLeft: "0px" })};
 `;
 
 const Wrapper = styled.div`
@@ -20,6 +23,7 @@ const Left = styled.div`
   flex: 1;
   align-items: center;
   display: flex;
+  ${mobile({ display: "none" })};
 `;
 
 const Language = styled.span`
@@ -27,29 +31,27 @@ const Language = styled.span`
   cursor: pointer;
 `;
 const SearchContainer = styled.span`
-  border: 1px solid lightgray;
   display: flex;
   align-items: center;
-  margin-left: 25px;
+  margin-left: 20px;
   padding: 5px;
 `;
 
-
-const Input = styled.input`
-  border: none;
-`;
+const Input = styled.input``;
 
 const Right = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: flex-end;
+  ${mobile({ justifyContent: "center" })};
 `;
 
 const MenuItem = styled.div`
   font-size: 1.2rem;
   cursor: pointer;
   margin: 0 15px;
+  ${mobile({ fontSize: "1rem", marginRight: "5px" })};
 `;
 
 const Navbar = (props) => {
@@ -65,16 +67,16 @@ const Navbar = (props) => {
         </Left>
         <Right>
           <Link to="/">
-          <MenuItem>Home</MenuItem>
+            <MenuItem>Home</MenuItem>
           </Link>
           <MenuItem>Call Us</MenuItem>
           <MenuItem>Register</MenuItem>
           <MenuItem> Sign In </MenuItem>
           <MenuItem>
-          <Link to="/cart">
-            <Badge badgeContent={props.cart.length} color="primary">
-              <ShoppingCartOutlined />
-            </Badge>
+            <Link to="/cart">
+              <Badge badgeContent={props.cart.length} color="primary">
+                <ShoppingCartOutlined />
+              </Badge>
             </Link>
           </MenuItem>
         </Right>
