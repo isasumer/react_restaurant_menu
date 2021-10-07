@@ -1,6 +1,5 @@
 {
   "name": "react-restaurant",
-  "homepage": "http://isasumer.github.io/React_Restaurant_Menu",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
