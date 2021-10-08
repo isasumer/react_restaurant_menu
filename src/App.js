@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 const App = () => {
   return (
     <Router basename={process.env.PUBLIC_URL}>
+      <Route path="/cart" component={Cart} />
       <Route exact path="/" component={Home} />
-      <Route exact path="/cart" component={Cart} />
     </Router>
   );
 };
