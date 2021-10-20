@@ -53,7 +53,7 @@ const Navbar = (props) => {
           <MenuItem> Sign In </MenuItem>
           <MenuItem>
             <Link to="/cart">
-              <Badge badgeContent={props.cart.length} color="primary">
+              <Badge badgeContent={new Set(props.cart).size} color="primary">
                 <ShoppingCartOutlined />
               </Badge>
             </Link>
