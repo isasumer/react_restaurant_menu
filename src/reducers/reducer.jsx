@@ -9,11 +9,14 @@ const INITIAL_STATE = {
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "ADD_CHART":
-      return { ...state, cart: [...state.cart, action.payload] };
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
+      };
     case "SEARCH":
       return {
         ...state,
-        menuList: data.filter((item) =>
+        menuList: state.menuList.filter((item) =>
           item.title.toLowerCase().includes(action.payload.toLowerCase())
         ),
       };

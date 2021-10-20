@@ -130,6 +130,7 @@ const Cart = (props) => {
 
   return (
     <Container>
+      {console.log([new Set(props.cart)])}
       <Navbar />
       <Wrapper>
         <Title>YOUR CART</Title>
@@ -138,7 +139,7 @@ const Cart = (props) => {
             <TopButton>CONTINUE SHOPPING</TopButton>
           </Link>
           <TopTexts>
-            <TopText>Shopping Bag({props.cart.length})</TopText>
+            <TopText>Shopping Bag({new Set(props.cart).size})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
